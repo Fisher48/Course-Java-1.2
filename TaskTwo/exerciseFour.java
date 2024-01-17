@@ -97,6 +97,7 @@ Hunter (String n, String w, int h, int a, int s, double d, int m)
             this.HP += HP;
           }
 
+          // атака на персонажа - ХП и мана
           void attack(int mana, int HP) {
             this.feed_mana(mana); 
             this.healing(HP);
@@ -113,8 +114,8 @@ public class exerciseFour {
         myDwarf.feed_mana(100);
 
         myWarrior.attack(-100,-100);
-        myHunter.feed_mana(200);
         myWarrior.feed_mana(350);
+        myHunter.feed_mana(200);
         
         System.out.println("Характеристики Дварфа");
           System.out.println("Здоровье: " + myDwarf.HP);
