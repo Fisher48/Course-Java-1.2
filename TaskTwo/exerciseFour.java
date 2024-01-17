@@ -113,6 +113,8 @@ public class exerciseFour {
         myDwarf.feed_mana(100);
 
         myWarrior.attack(-100,-100);
+        myHunter.feed_mana(200);
+        myWarrior.feed_mana(350);
         
         System.out.println("Характеристики Дварфа");
           System.out.println("Здоровье: " + myDwarf.HP);
@@ -131,7 +133,6 @@ public class exerciseFour {
           System.out.println("Урон: " + myHunter.damage);
           System.out.println("Мана: " + myHunter.mana);
           System.out.println();
-          myHunter.feed_mana(200);
 
         System.out.println("Характеристики Воина");
           System.out.println("Здоровье: " + myWarrior.HP);
@@ -141,7 +142,6 @@ public class exerciseFour {
           System.out.println("Урон: " + myWarrior.damage);
           System.out.println("Мана: " + myWarrior.mana);
           System.out.println();
-          myWarrior.feed_mana(350);
     }
     
 }
