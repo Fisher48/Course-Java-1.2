@@ -1,5 +1,6 @@
-package TaskOne;
 /* 1.3. Напишите наглядный пример на основе задания 2, который демонстрирует побочный эффект от передачи объектов по ссылке. */
+
+package TaskOne;
 
 class Hunter {
     String name = "Охотник";
@@ -50,7 +51,6 @@ class Hunter {
         myDwarf.strenght = myWarrior.strenght / 3;
         myDwarf.mana = myHunter.mana * 2;
   
-        // Пример демонстрирует побочный эффект от передачи объектов по ссылке
         System.out.println("Характеристики Дварфа 1");
           System.out.println("Ловкость: " + myDwarf1.agility);
           System.out.println("Сила: " + myDwarf1.strenght);
