@@ -50,14 +50,19 @@ class Hunter {
         
         myDwarf.strenght = myWarrior.strenght / 3;
         myDwarf.mana = myHunter.mana * 2;
+        myDwarf.weapon = "Ножи";
   
         System.out.println("Характеристики Дварфа 1");
           System.out.println("Ловкость: " + myDwarf1.agility);
           System.out.println("Сила: " + myDwarf1.strenght);
+          System.out.println("Оружие: " + myDwarf1.weapon);
+          System.out.println("Урон: " + myDwarf1.damage);
           System.out.println("Мана: " + myDwarf1.mana);
         System.out.println("Характеристики Дварфа");
           System.out.println("Ловкость: " + myDwarf.agility);
           System.out.println("Сила: " + myDwarf.strenght);
+          System.out.println("Оружие: " + myDwarf.weapon);
+          System.out.println("Урон: " + myDwarf.damage);
           System.out.println("Мана: " + myDwarf.mana);
       }
   }
