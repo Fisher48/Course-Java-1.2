@@ -2,15 +2,15 @@
 
 package TaskTwo;
 class Hunter {
-    String name = "Охотник";
-    String weapon = "Лук";
-    int HP = 500;
-    int agility;
-    int strenght;  
-    double damage;  
-    int mana;
+  String name = "Охотник";
+  String weapon = "Лук";
+  int HP = 500;
+  int agility;
+  int strenght;  
+  double damage;  
+  int mana;
 
-Hunter (String n, String w, int h, int a, int s, double d, int m)
+  Hunter (String n, String w, int h, int a, int s, double d, int m)
   {
     this.name = n;
     this.weapon = w;
@@ -20,8 +20,9 @@ Hunter (String n, String w, int h, int a, int s, double d, int m)
     this.damage = d;
     this.mana = m;
   }   
+    // эликсир восстановит ману
     void feed_mana(int new_mana) {
-      this.mana = new_mana;
+      this.mana += new_mana;
     }
 
     // эликсир увеличит ХП 
@@ -29,10 +30,11 @@ Hunter (String n, String w, int h, int a, int s, double d, int m)
         this.HP += HP;
       }
 
-      void attack() {
+    // атака на персонажа - ХП и мана
+    void attack(int mana, int HP) {
         this.feed_mana(-100); 
         this.healing(-100);
-      }
+    }
 }
     class Warrior {
       String name = "Воин";
@@ -43,7 +45,7 @@ Hunter (String n, String w, int h, int a, int s, double d, int m)
       double damage;  
       int mana;
 
-    Warrior (String n, String w, int h, int a, int s, double d, int m)
+      Warrior (String n, String w, int h, int a, int s, double d, int m)
       {
         this.name = n;
         this.weapon = w;
@@ -53,19 +55,21 @@ Hunter (String n, String w, int h, int a, int s, double d, int m)
         this.damage = d;
         this.mana = m;
       }   
+        // эликсир восстановит ману
         void feed_mana(int new_mana) {
-          this.mana = new_mana;
+          this.mana += new_mana;
         }
 
         // эликсир увеличит ХП 
         void healing(int HP){
             this.HP += HP;
-          }
+        }
 
+        // атака на персонажа - ХП и мана
         void attack(int mana, int HP) {
-            this.feed_mana(-100); 
-            this.healing(-200);
-          }
+            this.feed_mana(mana); 
+            this.healing(HP);
+        }
     }
 
       class Dwarf {
@@ -89,12 +93,12 @@ Hunter (String n, String w, int h, int a, int s, double d, int m)
 
           // эликсир восстановит ману
           void feed_mana(int new_mana) {
-            this.mana = new_mana;
+            this.mana += new_mana;
           }
 
           // эликсир увеличит ХП 
           void healing(int HP){
-            this.HP += HP;
+            this.HP += 100;
           }
 
           // атака на персонажа - ХП и мана
@@ -113,9 +117,11 @@ public class exerciseFour {
         myDwarf.healing(100); // увеличение здоровья эликсиром
         myDwarf.feed_mana(100);
 
-        myWarrior.attack(-100,-100);
+        myWarrior.attack(-100,-200);
         myWarrior.feed_mana(350);
+
         myHunter.feed_mana(200);
+        myHunter.attack(-300,-200);
         
         System.out.println("Характеристики Дварфа");
           System.out.println("Здоровье: " + myDwarf.HP);
