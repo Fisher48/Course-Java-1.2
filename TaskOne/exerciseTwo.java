@@ -51,14 +51,20 @@ class Hunter {
         System.out.println("Характеристики Дварфа");
           System.out.println("Ловкость: " + myDwarf.agility);
           System.out.println("Сила: " + myDwarf.strenght);
+          System.out.println("Оружие: " + myDwarf.weapon);
+          System.out.println("Урон: " + myDwarf.damage);
           System.out.println("Мана: " + myDwarf.mana);
         System.out.println("Характеристики Охотника");
           System.out.println("Ловкость: " + myHunter.agility);
           System.out.println("Сила: " + myHunter.strenght);
+          System.out.println("Оружие: " + myHunter.weapon);
+          System.out.println("Урон: " + myHunter.damage);
           System.out.println("Мана: " + myHunter.mana);
         System.out.println("Характеристики Воина");
           System.out.println("Ловкость: " + myWarrior.agility);
           System.out.println("Сила: " + myWarrior.strenght);
+          System.out.println("Оружие: " + myWarrior.weapon);
+          System.out.println("Урон: " + myWarrior.damage);
           System.out.println("Мана: " + myWarrior.mana);
       }
   }
