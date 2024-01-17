@@ -71,7 +71,6 @@ public class exerciseFour {
         Warrior myWarrior = new Warrior("Иван", "Двуручный меч", 10, 50, 500, 200);
         Dwarf myDwarf = new Dwarf("Алексей", "Посох", 15, 20, 350, 500);
         
-  
         System.out.println("Характеристики Дварфа");
           System.out.println("Ловкость: " + myDwarf.agility);
           System.out.println("Сила: " + myDwarf.strenght);
@@ -79,6 +78,7 @@ public class exerciseFour {
           System.out.println("Урон: " + myDwarf.damage);
           System.out.println("Мана: " + myDwarf.mana);
           myDwarf.feed_mana(100);
+
         System.out.println("Характеристики Охотника");
           System.out.println("Ловкость: " + myHunter.agility);
           System.out.println("Сила: " + myHunter.strenght);
@@ -86,6 +86,7 @@ public class exerciseFour {
           System.out.println("Урон: " + myHunter.damage);
           System.out.println("Мана: " + myHunter.mana);
           myHunter.feed_mana(200);
+          
         System.out.println("Характеристики Воина");
           System.out.println("Ловкость: " + myWarrior.agility);
           System.out.println("Сила: " + myWarrior.strenght);
