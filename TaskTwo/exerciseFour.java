@@ -4,7 +4,7 @@ package TaskTwo;
 class Hunter {
   String name = "Охотник";
   String weapon = "Лук";
-  int HP = 500;
+  int HP;
   int agility;
   int strenght;  
   double damage;  
@@ -26,20 +26,25 @@ class Hunter {
     }
 
     // эликсир увеличит ХП 
-    void healing(int HP){
-        this.HP += HP;
-      }
+    void healing() {
+      this.HP += 100;
+    }
+
+    // потеря ХП 
+    void loss() {
+      this.HP -= 200;
+    }
 
     // атака на персонажа - ХП и мана
-    void attack(int mana, int HP) {
-        this.feed_mana(-100); 
-        this.healing(-100);
+    void magic_attack() {
+      this.feed_mana(-200); 
+      this.loss();
     }
 }
     class Warrior {
       String name = "Воин";
       String weapon = "Меч";
-      int HP = 800;
+      int HP;
       int agility;
       int strenght; 
       double damage;  
@@ -61,21 +66,26 @@ class Hunter {
         }
 
         // эликсир увеличит ХП 
-        void healing(int HP){
-            this.HP += HP;
+        void healing(int HP) {
+          this.HP += 100;
+        }
+
+        // потеря ХП 
+        void loss() {
+          this.HP -= 200;
         }
 
         // атака на персонажа - ХП и мана
-        void attack(int mana, int HP) {
-            this.feed_mana(mana); 
-            this.healing(HP);
+        void magic_attack() {
+          this.feed_mana(-200); 
+          this.loss();
         }
     }
 
       class Dwarf {
         String name = "Дварф";
         String weapon = "Посох";
-        int HP = 400;
+        int HP;
         int agility;
         int strenght; 
         double damage;  
@@ -97,31 +107,36 @@ class Hunter {
           }
 
           // эликсир увеличит ХП 
-          void healing(int HP){
+          void healing(int HP) {
             this.HP += 100;
+          }
+          
+          // потеря ХП 
+          void loss() {
+            this.HP -= 200;
           }
 
           // атака на персонажа - ХП и мана
-          void attack(int mana, int HP) {
-            this.feed_mana(mana); 
-            this.healing(HP);
+          void magic_attack() {
+            this.feed_mana(-200); 
+            this.loss();
           }
       }
 
 public class exerciseFour {
     public static void main(String[] args) {
+        Dwarf myDwarf = new Dwarf("Алексей", "Посох",500, 15, 20, 350, 500);
         Hunter myHunter = new Hunter("Сергей", "Арбалет", 600, 200, 30, 400,100);
         Warrior myWarrior = new Warrior("Иван", "Двуручный меч", 800, 10, 50, 500, 200);
-        Dwarf myDwarf = new Dwarf("Алексей", "Посох",500, 15, 20, 350, 500);
 
         myDwarf.healing(100); // увеличение здоровья эликсиром
-        myDwarf.feed_mana(100);
-
-        myWarrior.attack(-100,-200);
-        myWarrior.feed_mana(350);
+        myDwarf.feed_mana(100);  // пополнение маны
 
         myHunter.feed_mana(200);
-        myHunter.attack(-300,-200);
+        myHunter.magic_attack();
+
+        myWarrior.magic_attack();
+        myWarrior.feed_mana(350);
         
         System.out.println("Характеристики Дварфа");
           System.out.println("Здоровье: " + myDwarf.HP);
@@ -149,6 +164,5 @@ public class exerciseFour {
           System.out.println("Урон: " + myWarrior.damage);
           System.out.println("Мана: " + myWarrior.mana);
           System.out.println();
-    }
-    
+    } 
 }
