@@ -125,7 +125,7 @@ class Hunter {
 
 public class exerciseFour {
     public static void main(String[] args) {
-        Dwarf myDwarf = new Dwarf("Алексей", "Посох",500, 15, 20, 350, 500);
+        Dwarf myDwarf = new Dwarf("Алексей", "Посох", 500, 15, 20, 350, 500);
         Hunter myHunter = new Hunter("Сергей", "Арбалет", 600, 200, 30, 400,100);
         Warrior myWarrior = new Warrior("Иван", "Двуручный меч", 800, 10, 50, 500, 200);
 
@@ -133,7 +133,7 @@ public class exerciseFour {
         myDwarf.feed_mana(100);  // пополнение маны
 
         myHunter.feed_mana(200);
-        myHunter.magic_attack();
+        myHunter.magic_attack(); // магическая атака (-Хп и - мана)
 
         myWarrior.magic_attack();
         myWarrior.feed_mana(350);
