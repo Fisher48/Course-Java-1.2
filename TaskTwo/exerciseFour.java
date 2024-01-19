@@ -2,8 +2,8 @@
 
 package TaskTwo;
 class Hunter {
-  String name = "Охотник";
-  String weapon = "Лук";
+  String name;
+  String weapon;
   int HP;
   int agility;
   int strenght;  
@@ -42,8 +42,8 @@ class Hunter {
     }
 }
     class Warrior {
-      String name = "Воин";
-      String weapon = "Меч";
+      String name;
+      String weapon;
       int HP;
       int agility;
       int strenght; 
@@ -83,8 +83,8 @@ class Hunter {
     }
 
       class Dwarf {
-        String name = "Дварф";
-        String weapon = "Посох";
+        String name;
+        String weapon;
         int HP;
         int agility;
         int strenght; 
