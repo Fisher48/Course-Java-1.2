@@ -22,39 +22,42 @@ class Person {
     }
     
       // эликсир увеличит ХП 
-      public void getHealing() {
+      protected void getHealing() {
         this.HP += 100;
       }
 
       // потеря ХП 
-      public void getLoss() {
+      protected void getLoss() {
         this.HP -= 200;
       }
     
       // атака на персонажа - ХП и мана
-      public void getAttack() {
+      protected void getAttack() {
         this.getLoss();
       }
 }
     class Hunter extends Person {
-        protected int endurance;
+        private int endurance;
 
       Hunter (int h, int a, int s, double d, int e, String n, String w) {
         super(h, a, s, d, n, w);
         this.endurance = e;
       }
-        protected void attack() {
+        protected void getAttack() {
           this.getLoss();
           this.endurance = -100;
         }
         // восстановит выносливость
-        public void feed_endurande(int new_endurance) {
-            this.endurance += new_endurance;
+        public int getEndurance(int new_endurance) {
+            if (new_endurance > endurance) {
+              return endurance;
+            }
+              return this.endurance += new_endurance;
         }
     }
 
     class Warrior extends Person {
-        protected int fury;
+        private int fury;
 
       Warrior (int h, int a, int s, double d, int f, String n, String w) {
         super(h, a, s, d, n, w);
@@ -66,15 +69,15 @@ class Person {
       }   
           // восстановит ярость
           public int getFury(int new_fury) {
-            if (new_fury > fury) {
+              if (new_fury > fury) {
                 return fury;
-            }
+              }
                 return this.fury += new_fury;
-    } 
+          } 
     }
 
     class Dwarf extends Person {
-        protected int mana;
+        private int mana;
 
       Dwarf (int h, int a, int s, double d, int m, String n, String w) {
         super(h, a, s, d, n, w);
@@ -82,8 +85,11 @@ class Person {
     }
 
         // эликсир восстановит ману
-        public void feed_mana(int new_mana) {
-          this.mana += new_mana;
+        public int getMana(int new_mana) {
+            if (new_mana > mana) {
+              return mana;
+            }
+              return this.mana += new_mana;
         }
 }
 
@@ -95,10 +101,10 @@ class Person {
         Warrior myWarrior = new Warrior(800, 30, 10, 200, 100, "Дуэйн", "Меч");
 
         myDwarf.getHealing(); // увеличение здоровья эликсиром
-        myDwarf.feed_mana(100);  // пополнение маны
+        myDwarf.getMana(100);  // пополнение маны
         myDwarf.getAttack();
 
-        myHunter.feed_endurande(200);
+        myHunter.getEndurance(200);
         myHunter.getAttack(); // магическая атака (-Хп и - мана)
 
         myWarrior.getAttack();
@@ -110,7 +116,6 @@ class Person {
           System.out.println("Сила: " + myDwarf.strenght);
           System.out.println("Оружие: " + myDwarf.weapon);
           System.out.println("Урон: " + myDwarf.damage);
-          System.out.println("Мана: " + myDwarf.mana);
           System.out.println();
 
         System.out.println("Характеристики Охотника");
@@ -119,7 +124,6 @@ class Person {
           System.out.println("Сила: " + myHunter.strenght);
           System.out.println("Оружие: " + myHunter.weapon);
           System.out.println("Урон: " + myHunter.damage);
-          System.out.println("Выносливость: " + myHunter.endurance);
           System.out.println();
 
         System.out.println("Характеристики Воина");
@@ -128,7 +132,6 @@ class Person {
           System.out.println("Сила: " + myWarrior.strenght);
           System.out.println("Оружие: " + myWarrior.weapon);
           System.out.println("Урон: " + myWarrior.damage);
-          System.out.println("Ярость: " + myWarrior.fury);
           System.out.println();
     } 
 }
