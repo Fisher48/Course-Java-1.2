@@ -102,10 +102,10 @@ class Person {
 
         myDwarf.getHealing(); // увеличение здоровья эликсиром
         myDwarf.getMana(100);  // пополнение маны
-        myDwarf.getAttack();
+        myDwarf.getAttack(); 
 
-        myHunter.getEndurance(200);
-        myHunter.getAttack(); // магическая атака (-Хп и - мана)
+        myHunter.getEndurance(200); // восполнение выносливости
+        myHunter.getAttack();
 
         myWarrior.getAttack();
         myWarrior.getFury(350);
