@@ -65,9 +65,6 @@ class Person {
             }
               return this.endurance += new_endurance;
         }
-        int getEndurance () {
-          return endurance;
-        }
     }
 
     class Warrior extends Person {
@@ -88,9 +85,6 @@ class Person {
               }
                 return this.fury += new_fury;
           } 
-          int getFury () {
-            return fury;
-          }
     }
 
     class Dwarf extends Person {
@@ -112,9 +106,6 @@ class Person {
             }
               return this.mana += new_mana;
         }
-        int getMana () {
-          return mana;
-        }
 }
 
   public class exerciseFive {
@@ -134,11 +125,8 @@ class Person {
         myWarrior.attack();
         myWarrior.refill(350); // восполнение ярости
 
-        System.out.println("Мана: " + myDwarf.getMana());
         myDwarf.getInfo(); // вывод на экран хар-ки персонажа
-        System.out.println("Выносливость: " + myHunter.getEndurance());
         myHunter.getInfo();
-        System.out.println("Ярость: " + myWarrior.getFury());
         myWarrior.getInfo();
     } 
 }
