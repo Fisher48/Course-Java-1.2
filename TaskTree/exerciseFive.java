@@ -56,7 +56,7 @@ class Person {
         // измененный родительский метод
         protected void attack() {
           this.loss();
-          this.endurance = -100;
+          this.endurance -= 100;
         }
         // восстановит выносливость
         protected int refill(int new_endurance) {
@@ -64,6 +64,9 @@ class Person {
               return endurance;
             }
               return this.endurance += new_endurance;
+        }
+        int getEndurance () {
+          return endurance;
         }
     }
 
@@ -76,7 +79,7 @@ class Person {
      }
           protected void attack() {
             this.loss();
-            this.fury = -100;
+            this.fury -= 100;
       }   
           // восстановит ярость
           protected int refill(int new_fury) {
@@ -85,6 +88,9 @@ class Person {
               }
                 return this.fury += new_fury;
           } 
+          int getFury () {
+            return fury;
+          }
     }
 
     class Dwarf extends Person {
@@ -96,7 +102,7 @@ class Person {
     }
         protected void attack() {
           this.loss();
-          this.mana = -100;
+          this.mana -= 100;
         }
 
         // эликсир восстановит ману
@@ -105,6 +111,9 @@ class Person {
               return mana;
             }
               return this.mana += new_mana;
+        }
+        int getMana () {
+          return mana;
         }
 }
 
@@ -117,16 +126,19 @@ class Person {
 
         myDwarf.healing(); // увеличение здоровья эликсиром
         myDwarf.refill(100);  // пополнение маны
-        myDwarf.attack(); 
+        myDwarf.attack(); // атака на персонажа
 
         myHunter.refill(200); // восполнение выносливости
         myHunter.attack();
 
         myWarrior.attack();
-        myWarrior.refill(350);
+        myWarrior.refill(350); // восполнение ярости
 
+        System.out.println("Мана: " + myDwarf.getMana());
         myDwarf.getInfo(); // вывод на экран хар-ки персонажа
+        System.out.println("Выносливость: " + myHunter.getEndurance());
         myHunter.getInfo();
+        System.out.println("Ярость: " + myWarrior.getFury());
         myWarrior.getInfo();
     } 
 }
