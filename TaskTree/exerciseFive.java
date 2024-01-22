@@ -5,12 +5,12 @@
 
 package TaskTree;
 class Person {
-    protected int HP;
-    protected int agility;
-    protected int strenght;
-    protected double damage;
-    protected String name;
-    protected String weapon;
+    private int HP;
+    private int agility;
+    private int strenght;
+    private double damage;
+    private String name;
+    private String weapon;
     
     Person (int h, int a, int s, double d, String n, String w) {
         this.HP = h;
@@ -35,6 +35,16 @@ class Person {
       protected void getAttack() {
         this.getLoss();
       }
+
+      protected void getInfo() {
+        System.out.println("Имя: " + this.name);
+        System.out.println("Оружие: " + this.weapon);
+        System.out.println("Здоровье: " + this.HP);
+        System.out.println("Ловкость: " + this.agility);
+        System.out.println("Сила: " + this.strenght);
+        System.out.println("Урон: " + this.damage);
+        System.out.println();
+      }
 }
     class Hunter extends Person {
         private int endurance;
@@ -48,7 +58,7 @@ class Person {
           this.endurance = -100;
         }
         // восстановит выносливость
-        public int getEndurance(int new_endurance) {
+        protected int getEndurance(int new_endurance) {
             if (new_endurance > endurance) {
               return endurance;
             }
@@ -63,7 +73,7 @@ class Person {
         super(h, a, s, d, n, w);
         this.fury = f;
      }
-          protected void attack() {
+          protected void getAttack() {
             this.getLoss();
             this.fury = -100;
       }   
@@ -83,6 +93,10 @@ class Person {
         super(h, a, s, d, n, w);
         this.mana = m;
     }
+        protected void getAttack() {
+          this.getLoss();
+          this.mana = -100;
+        }
 
         // эликсир восстановит ману
         public int getMana(int new_mana) {
@@ -109,29 +123,9 @@ class Person {
 
         myWarrior.getAttack();
         myWarrior.getFury(350);
-        
-        System.out.println("Характеристики Дварфа");
-          System.out.println("Здоровье: " + myDwarf.HP);
-          System.out.println("Ловкость: " + myDwarf.agility);
-          System.out.println("Сила: " + myDwarf.strenght);
-          System.out.println("Оружие: " + myDwarf.weapon);
-          System.out.println("Урон: " + myDwarf.damage);
-          System.out.println();
 
-        System.out.println("Характеристики Охотника");
-          System.out.println("Здоровье: " + myHunter.HP);
-          System.out.println("Ловкость: " + myHunter.agility);
-          System.out.println("Сила: " + myHunter.strenght);
-          System.out.println("Оружие: " + myHunter.weapon);
-          System.out.println("Урон: " + myHunter.damage);
-          System.out.println();
-
-        System.out.println("Характеристики Воина");
-          System.out.println("Здоровье: " + myWarrior.HP);
-          System.out.println("Ловкость: " + myWarrior.agility);
-          System.out.println("Сила: " + myWarrior.strenght);
-          System.out.println("Оружие: " + myWarrior.weapon);
-          System.out.println("Урон: " + myWarrior.damage);
-          System.out.println();
+        myDwarf.getInfo(); // вывод на экран хар-ки персонажа
+        myHunter.getInfo();
+        myWarrior.getInfo();
     } 
 }
