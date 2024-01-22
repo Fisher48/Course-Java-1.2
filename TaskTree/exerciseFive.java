@@ -22,18 +22,18 @@ class Person {
     }
     
       // эликсир увеличит ХП 
-      protected void getHealing() {
+      protected void healing() {
         this.HP += 100;
       }
 
       // потеря ХП 
-      protected void getLoss() {
+      protected void loss() {
         this.HP -= 200;
       }
     
-      // атака на персонажа - ХП и мана
-      protected void getAttack() {
-        this.getLoss();
+      // атака на персонажа
+      protected void attack() {
+        this.loss();
       }
 
       protected void getInfo() {
@@ -53,12 +53,13 @@ class Person {
         super(h, a, s, d, n, w);
         this.endurance = e;
       }
-        protected void getAttack() {
-          this.getLoss();
+        // измененный родительский метод
+        protected void attack() {
+          this.loss();
           this.endurance = -100;
         }
         // восстановит выносливость
-        protected int getEndurance(int new_endurance) {
+        protected int refill(int new_endurance) {
             if (new_endurance > endurance) {
               return endurance;
             }
@@ -73,12 +74,12 @@ class Person {
         super(h, a, s, d, n, w);
         this.fury = f;
      }
-          protected void getAttack() {
-            this.getLoss();
+          protected void attack() {
+            this.loss();
             this.fury = -100;
       }   
           // восстановит ярость
-          public int getFury(int new_fury) {
+          protected int refill(int new_fury) {
               if (new_fury > fury) {
                 return fury;
               }
@@ -93,13 +94,13 @@ class Person {
         super(h, a, s, d, n, w);
         this.mana = m;
     }
-        protected void getAttack() {
-          this.getLoss();
+        protected void attack() {
+          this.loss();
           this.mana = -100;
         }
 
         // эликсир восстановит ману
-        public int getMana(int new_mana) {
+        protected int refill(int new_mana) {
             if (new_mana > mana) {
               return mana;
             }
@@ -114,15 +115,15 @@ class Person {
         Hunter myHunter = new Hunter(600, 25, 20, 150, 150, "Хантер", "Лук");
         Warrior myWarrior = new Warrior(800, 30, 10, 200, 100, "Дуэйн", "Меч");
 
-        myDwarf.getHealing(); // увеличение здоровья эликсиром
-        myDwarf.getMana(100);  // пополнение маны
-        myDwarf.getAttack(); 
+        myDwarf.healing(); // увеличение здоровья эликсиром
+        myDwarf.refill(100);  // пополнение маны
+        myDwarf.attack(); 
 
-        myHunter.getEndurance(200); // восполнение выносливости
-        myHunter.getAttack();
+        myHunter.refill(200); // восполнение выносливости
+        myHunter.attack();
 
-        myWarrior.getAttack();
-        myWarrior.getFury(350);
+        myWarrior.attack();
+        myWarrior.refill(350);
 
         myDwarf.getInfo(); // вывод на экран хар-ки персонажа
         myHunter.getInfo();
