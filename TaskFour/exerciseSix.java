@@ -199,6 +199,17 @@ class Person {
         Hunter myHunter = new Hunter(600, 25, 20, 150, 150, "Хантер", "Лук");
         Warrior myWarrior = new Warrior(800, 30, 10, 200, 100, "Дуэйн", "Меч");
 
+        Head Helmet = new Head("Шлем", 125, 0, 100, 50);
+        Body newBody = new Body("null", 100, 0, 50, 30);
+        Hands Glooves = new Hands("Перчатки", 120, 0, 90, 70);
+        Foot Boots = new Foot("Сапоги", 150, 0, 150, 40);
+
+        Helmet.equip(1);
+        newBody.equip(1);
+        Glooves.equip(1);
+        Boots.equip(1);
+
+
         myDwarf.healing(); // увеличение здоровья эликсиром
         myDwarf.refill(100);  // пополнение маны
         myDwarf.attack(); // атака на персонажа
