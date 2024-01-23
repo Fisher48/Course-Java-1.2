@@ -73,11 +73,11 @@ class Person {
       Warrior (int h, int a, int s, double d, int f, String n, String w) {
         super(h, a, s, d, n, w);
         this.fury = f;
-     }
+      }
           protected void attack() {
             this.loss();
             this.fury -= 100;
-      }   
+          }   
           // восстановит ярость
           protected int refill(int new_fury) {
               if (new_fury > fury) {
@@ -93,7 +93,7 @@ class Person {
       Dwarf (int h, int a, int s, double d, int m, String n, String w) {
         super(h, a, s, d, n, w);
         this.mana = m;
-    }
+      }
         protected void attack() {
           this.loss();
           this.mana -= 100;
@@ -106,7 +106,7 @@ class Person {
             }
               return this.mana += new_mana;
         }
-}
+    }
 
   public class exerciseFive {
     public static void main(String[] args) {
