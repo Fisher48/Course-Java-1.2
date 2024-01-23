@@ -113,6 +113,85 @@ class Person {
         }
     }
 
+    class Items {
+        protected String name; // Название
+        protected int armor; // Кол-во брони баллы
+        protected int kind; // 1 - одето, 0 - снято
+
+        Items (String n, int a, int k) {
+        this.name = n;
+        this.armor = a;
+        this.kind = k;
+        }
+
+        public void equip(int knd) {
+            kind = 0;
+            kind = knd;
+        }
+    }
+
+        class Head extends Items {
+            protected int HP;
+            protected int mag_Armor;
+            Head (String n, int a, int k, int h, int mA) {
+                super(n, a, k);
+            }
+
+            public void equip(int knd) {
+                kind = knd;
+                if (kind == 1) {
+                  HP += 200;
+                } 
+            }
+        }
+        
+        class Hands extends Items {
+            protected int HP;
+            protected int mag_Armor;
+            Hands (String n, int a, int k, int h, int mA) {
+                super(n, a, k);
+            }
+
+            public void equip(int knd) {
+                kind = knd;
+                if (kind == 1) {
+                  HP += 100;
+                } 
+            }
+        }
+
+        class Body extends Items {
+            protected int HP;
+            protected int mag_Armor;
+            Body (String n, int a, int k, int h, int mA) {
+                super(n, a, k);
+            }
+
+            public void equip(int knd) {
+                kind = knd;
+                if (kind == 1) {
+                  HP += 300;
+                } 
+            }
+        }
+
+        class Foot extends Items {
+            protected int HP;
+            protected int mag_Armor;
+            Foot (String n, int a, int k, int h, int mA) {
+                super(n, a, k);
+            }
+
+            public void equip(int knd) {
+                kind = knd;
+                if (kind == 1) {
+                  HP += 100;
+                } 
+            }
+        }
+
+
+
   public class exerciseSix {
     public static void main(String[] args) {
         
