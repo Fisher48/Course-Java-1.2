@@ -200,7 +200,7 @@ class Person {
         Warrior myWarrior = new Warrior(800, 30, 10, 200, 100, "Дуэйн", "Меч");
 
         Head Helmet = new Head("Шлем", 125, 0, 100, 50);
-        Body newBody = new Body("null", 100, 0, 50, 30);
+        Body newBody = new Body("Нагрудник", 100, 0, 50, 30);
         Hands Glooves = new Hands("Перчатки", 120, 0, 90, 70);
         Foot Boots = new Foot("Сапоги", 150, 0, 150, 40);
 
