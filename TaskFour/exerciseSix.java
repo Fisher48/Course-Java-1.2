@@ -11,11 +11,11 @@
 package TaskFour;
 class Person {
     protected int HP;
-    private int agility;
-    private int strenght;
-    private double damage;
-    private String name;
-    private String weapon;
+    protected int agility;
+    protected int strenght;
+    protected double damage;
+    protected String name;
+    protected String weapon;
     
     Person (int h, int a, int s, double d, String n, String w) {
         this.HP = h;
