@@ -126,7 +126,12 @@ class Person {
 
         public void equip(int knd) {
             kind = 0;
-            kind = knd;
+        }
+
+        protected void getInfo() {
+          System.out.println("Предмет: " + this.name);
+          System.out.println("Броня: " + this.armor);
+          System.out.println();
         }
     }
 
@@ -135,13 +140,25 @@ class Person {
             protected int mag_Armor;
             Head (String n, int a, int k, int h, int mA) {
                 super(n, a, k);
+                this.HP = h;
+                this.mag_Armor = mA;
             }
 
             public void equip(int knd) {
                 kind = knd;
-                if (kind == 1) {
-                  HP += 200;
+                if (kind == 0) {
+                  HP = 0;
+                  armor = 0;
+                  mag_Armor = 0;
                 } 
+            }
+
+            protected void getInfo() {
+              System.out.println("Предмет: " + this.name);
+              System.out.println("Броня: " + this.armor);
+              System.out.println("Здоровье: " + this.HP);
+              System.out.println("Магическая защита: " + this.mag_Armor);
+              System.out.println();
             }
         }
         
@@ -150,13 +167,25 @@ class Person {
             protected int mag_Armor;
             Hands (String n, int a, int k, int h, int mA) {
                 super(n, a, k);
+                this.HP = h;
+                this.mag_Armor = mA;
             }
 
             public void equip(int knd) {
                 kind = knd;
-                if (kind == 1) {
-                  HP += 100;
+                if (kind == 0) {
+                  HP = 0;
+                  armor = 0;
+                  mag_Armor = 0;
                 } 
+            }
+
+            protected void getInfo() {
+              System.out.println("Предмет: " + this.name);
+              System.out.println("Броня: " + this.armor);
+              System.out.println("Здоровье: " + this.HP);
+              System.out.println("Магическая защита: " + this.mag_Armor);
+              System.out.println();
             }
         }
 
@@ -165,13 +194,25 @@ class Person {
             protected int mag_Armor;
             Body (String n, int a, int k, int h, int mA) {
                 super(n, a, k);
+                this.HP = h;
+                this.mag_Armor = mA;
             }
 
             public void equip(int knd) {
                 kind = knd;
-                if (kind == 1) {
-                  HP += 300;
+                if (kind == 0) {
+                  HP = 0;
+                  armor = 0;
+                  mag_Armor = 0;
                 } 
+            }
+
+            protected void getInfo() {
+              System.out.println("Предмет: " + this.name);
+              System.out.println("Броня: " + this.armor);
+              System.out.println("Здоровье: " + this.HP);
+              System.out.println("Магическая защита: " + this.mag_Armor);
+              System.out.println();
             }
         }
 
@@ -180,17 +221,27 @@ class Person {
             protected int mag_Armor;
             Foot (String n, int a, int k, int h, int mA) {
                 super(n, a, k);
+                this.HP = h;
+                this.mag_Armor = mA;
             }
 
             public void equip(int knd) {
                 kind = knd;
-                if (kind == 1) {
-                  HP += 100;
+                if (kind == 0) {
+                  HP = 0;
+                  armor = 0;
+                  mag_Armor = 0;
                 } 
             }
+
+            protected void getInfo() {
+              System.out.println("Предмет: " + this.name);
+              System.out.println("Броня: " + this.armor);
+              System.out.println("Здоровье: " + this.HP);
+              System.out.println("Магическая защита: " + this.mag_Armor);
+              System.out.println();
+            }
         }
-
-
 
   public class exerciseSix {
     public static void main(String[] args) {
@@ -202,12 +253,17 @@ class Person {
         Head Helmet = new Head("Шлем", 125, 0, 100, 50);
         Body newBody = new Body("Нагрудник", 100, 0, 50, 30);
         Hands Glooves = new Hands("Перчатки", 120, 0, 90, 70);
-        Foot Boots = new Foot("Сапоги", 150, 0, 150, 40);
+        Foot Boots = new Foot("Сапоги", 150, 1, 150, 40);
 
         Helmet.equip(1);
         newBody.equip(1);
         Glooves.equip(1);
         Boots.equip(1);
+
+        Helmet.getInfo();
+        newBody.getInfo();
+        Glooves.getInfo();
+        Boots.getInfo();
 
 
         myDwarf.healing(); // увеличение здоровья эликсиром
