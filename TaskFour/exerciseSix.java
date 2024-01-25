@@ -54,7 +54,7 @@ class Person {
     class Hunter extends Person {
         private int endurance;
         protected Items Hands;
-        Hands Glooves = new Hands("name", 100, 1, 100, 50);
+        Hands Glooves = new Hands("name", 100, 1, 100, 50); // объявлен объект Перчатки класса Hands у класса Hunter
 
       Hunter (int h, int a, int s, double d, int e, String n, String w) {
         super(h, a, s, d, n, w);
@@ -63,7 +63,7 @@ class Person {
 
       protected void equip(int knd) {
         if (knd == 1) {
-          HP += Glooves.HPi;
+          HP += Glooves.HPi; // если knd = 1, то идет прирост ХП для персонажа
         }
         else if (knd == 0) {
           HP += 0;
@@ -157,10 +157,6 @@ class Person {
         this.kind = k;
         }
 
-        public void equip(int knd) {
-            kind = 0;
-        }
-
         protected void getInfo() {
           System.out.println("Предмет: " + this.name);
           System.out.println("Броня: " + this.armor);
@@ -175,15 +171,6 @@ class Person {
                 super(n, a, k);
                 this.HPi = hi;
                 this.mag_Armor = mA;
-            }
-
-            public void equip(int knd) {
-                kind = knd;
-                if (kind == 0) {
-                  HPi = 0;
-                  armor = 0;
-                  mag_Armor = 0;
-                } 
             }
 
             protected void getInfo() {
@@ -204,15 +191,6 @@ class Person {
                 this.mag_Armor = mA;
             }
 
-            public void equip(int knd) {
-                kind = knd;
-                if (kind == 0) {
-                  HPi = 0;
-                  armor = 0;
-                  mag_Armor = 0;
-                } 
-            }
-
             protected void getInfo() {
               System.out.println("Предмет: " + this.name);
               System.out.println("Броня: " + this.armor);
@@ -229,15 +207,6 @@ class Person {
                 super(n, a, k);
                 this.HPi = hi;
                 this.mag_Armor = mA;
-            }
-
-            public void equip(int knd) {
-                kind = knd;
-                if (kind == 0) {
-                  HPi = 0;
-                  armor = 0;
-                  mag_Armor = 0;
-                } 
             }
 
             protected void getInfo() {
@@ -258,15 +227,6 @@ class Person {
                 this.mag_Armor = mA;
             }
 
-            public void equip(int knd) {
-                kind = knd;
-                if (kind == 0) {
-                  HPi = 0;
-                  armor = 0;
-                  mag_Armor = 0;
-                } 
-            }
-
             protected void getInfo() {
               System.out.println("Предмет: " + this.name);
               System.out.println("Броня: " + this.armor);
@@ -283,24 +243,9 @@ class Person {
         Hunter myHunter = new Hunter(600, 25, 20, 150, 150, "Хантер", "Лук");
         Warrior myWarrior = new Warrior(800, 30, 10, 200, 100, "Дуэйн", "Меч");
 
-        Head Helmet = new Head("Шлем", 125, 0, 100, 50);
-        Body newBody = new Body("Нагрудник", 100, 0, 50, 30);
-        Hands Glooves = new Hands("Перчатки", 120, 1, 90, 70);
-        Foot Boots = new Foot("Сапоги", 150, 1, 150, 40);
-
-        Helmet.equip(1);
-        newBody.equip(1);
-        Glooves.equip(1);
-        Boots.equip(1);
-
-        Helmet.getInfo();
-        newBody.getInfo();
-        Glooves.getInfo();
-        Boots.getInfo();
-
-        myHunter.equip(1);
+        myHunter.equip(0);
         myDwarf.equip(0);
-        myWarrior.equip(1);
+        myWarrior.equip(0);
 
         myDwarf.healing(); // увеличение здоровья эликсиром
         myDwarf.refill(100);  // пополнение маны
