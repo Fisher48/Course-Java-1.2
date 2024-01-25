@@ -7,8 +7,8 @@
 Почему получился такой вывод?
 
 4.3. Придумайте наглядный пример, который демонстрирует, как работает ad hoc полиморфизм. */
-
 package TaskFour;
+import java.util.Random;
 class Person {
     protected int HP;
     protected int agility;
@@ -53,8 +53,7 @@ class Person {
 }
     class Hunter extends Person {
         private int endurance;
-        protected Items Hands;
-        Hands Glooves = new Hands("name", 100, 1, 100, 50); // объявлен объект Перчатки класса Hands у класса Hunter
+        Hands Glooves; // объявлен объект Перчатки класса Hands у класса Hunter
 
       Hunter (int h, int a, int s, double d, int e, String n, String w) {
         super(h, a, s, d, n, w);
@@ -85,8 +84,7 @@ class Person {
 
     class Warrior extends Person {
         private int fury;
-        protected Items Head;
-        Head Helmet = new Head("Шлем", 125, 0, 100, 50);
+        Head Helmet;
 
       Warrior (int h, int a, int s, double d, int f, String n, String w) {
         super(h, a, s, d, n, w);
@@ -116,8 +114,7 @@ class Person {
 
     class Dwarf extends Person {
         private int mana;
-        protected Items Foot;
-        Foot Boots = new Foot("Сапоги", 150, 1, 150, 40);
+        Foot Boots;
 
       Dwarf (int h, int a, int s, double d, int m, String n, String w) {
         super(h, a, s, d, n, w);
@@ -162,6 +159,10 @@ class Person {
           System.out.println("Броня: " + this.armor);
           System.out.println();
         }
+
+        protected void foo() {
+          System.out.println("Items");
+        }
     }
 
         class Head extends Items {
@@ -171,6 +172,10 @@ class Person {
                 super(n, a, k);
                 this.HPi = hi;
                 this.mag_Armor = mA;
+            }
+
+            protected void foo() {
+              System.out.println(this.name);
             }
 
             protected void getInfo() {
@@ -191,6 +196,10 @@ class Person {
                 this.mag_Armor = mA;
             }
 
+            protected void foo() {
+              System.out.println(this.name);
+            }
+
             protected void getInfo() {
               System.out.println("Предмет: " + this.name);
               System.out.println("Броня: " + this.armor);
@@ -207,6 +216,10 @@ class Person {
                 super(n, a, k);
                 this.HPi = hi;
                 this.mag_Armor = mA;
+            }
+
+            protected void foo() {
+              System.out.println(this.name);
             }
 
             protected void getInfo() {
@@ -227,6 +240,10 @@ class Person {
                 this.mag_Armor = mA;
             }
 
+            protected void foo() {
+              System.out.println(this.name);
+            }
+
             protected void getInfo() {
               System.out.println("Предмет: " + this.name);
               System.out.println("Броня: " + this.armor);
@@ -243,10 +260,6 @@ class Person {
         Hunter myHunter = new Hunter(600, 25, 20, 150, 150, "Хантер", "Лук");
         Warrior myWarrior = new Warrior(800, 30, 10, 200, 100, "Дуэйн", "Меч");
 
-        myHunter.equip(0);
-        myDwarf.equip(0);
-        myWarrior.equip(0);
-
         myDwarf.healing(); // увеличение здоровья эликсиром
         myDwarf.refill(100);  // пополнение маны
         myDwarf.attack(); // атака на персонажа
@@ -257,8 +270,40 @@ class Person {
         myWarrior.attack();
         myWarrior.refill(350); // восполнение ярости
 
+        Hands BigHands = new Hands("Большие руки", 100, 1, 100, 25);
+        Head Heller = new Head("Хеллер", 125, 0, 100, 50);
+        Foot BootsofSpeed = new Foot("Боты скорости", 150, 1, 150, 40);
+
+        // Передаем объект BigHands в поле Glooves класса Hunter
+        myHunter.Glooves = BigHands;
+        myDwarf.Boots = BootsofSpeed;
+        myWarrior.Helmet = Heller;
+
+        myDwarf.equip(0);
+        myHunter.equip(0);
+        myWarrior.equip(1);
+
         myDwarf.getInfo(); // вывод на экран хар-ки персонажа
         myHunter.getInfo();
         myWarrior.getInfo();
+
+        Hands g1 = new Hands("Наручи", 1, 1, 10, 1);
+        Head h1 = new Head("Шляпа", 1, 1, 10, 1);
+        Foot f1 = new Foot("Ботинки", 0, 1, 10, 1);
+        Body b1 = new Body("Тело", 0, 1, 10, 1);
+
+        Items [] its = new Items [500];
+        Random rand = new Random();
+        for (int i = 0; i < its.length; i++) {
+          int x = rand.nextInt(4);
+          if (x == 0) {
+            its[i] = g1;
+          } else if (x == 1) {
+            its[i] = h1;
+          } else if (x == 2) {
+            its[i] = f1;
+          } else 
+            its[i] = b1;
+        }
     } 
 }
