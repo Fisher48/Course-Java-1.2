@@ -50,6 +50,14 @@ class Person {
         System.out.println("Урон: " + this.damage);
         System.out.println();
       }
+
+      // Пример ad-hoc полиморфизма
+      public int adHoc(int HP, int agility) {
+        return HP + agility;
+      }
+      public String adHoc(String name, String weapon) {
+        return name + weapon;
+      }
 }
     class Hunter extends Person {
         private int endurance;
@@ -174,6 +182,7 @@ class Person {
                 this.mag_Armor = mA;
             }
 
+            // метод foo() выводит название Предмета
             protected void foo() {
               System.out.println(this.name);
             }
@@ -270,8 +279,9 @@ class Person {
         myWarrior.attack();
         myWarrior.refill(350); // восполнение ярости
 
+        // Предметы для композиции с персонажем
         Hands BigHands = new Hands("Большие руки", 100, 1, 100, 25);
-        Head Heller = new Head("Хеллер", 125, 0, 100, 50);
+        Head Heller = new Head("Хеллер", 125, 1, 100, 50);
         Foot BootsofSpeed = new Foot("Боты скорости", 150, 1, 150, 40);
 
         // Передаем объект BigHands в поле Glooves класса Hunter
@@ -279,19 +289,21 @@ class Person {
         myDwarf.Boots = BootsofSpeed;
         myWarrior.Helmet = Heller;
 
-        myDwarf.equip(0);
+        myDwarf.equip(0); // одеть или снять предмет
         myHunter.equip(0);
-        myWarrior.equip(1);
+        myWarrior.equip(0);
 
         myDwarf.getInfo(); // вывод на экран хар-ки персонажа
         myHunter.getInfo();
         myWarrior.getInfo();
 
+        // Объекты для массива
         Hands g1 = new Hands("Наручи", 1, 1, 10, 1);
         Head h1 = new Head("Шляпа", 1, 1, 10, 1);
         Foot f1 = new Foot("Ботинки", 0, 1, 10, 1);
         Body b1 = new Body("Тело", 0, 1, 10, 1);
 
+        // массив из 500 объектов, где случайно перемешаны 500 объектов четырех дочерних классов
         Items [] its = new Items [500];
         Random rand = new Random();
         for (int i = 0; i < its.length; i++) {
@@ -304,6 +316,13 @@ class Person {
             its[i] = f1;
           } else 
             its[i] = b1;
+
+            its[i].foo(); // вызов foo() в цилке
+            // Получается что метод понимает автоматически к какому классу относится определенный предмет в массиве и выводит его название
         }
+
+        // Вызов методов ad-hoc полиморфизма
+          System.out.println(myHunter.adHoc("10","10"));
+          System.out.println(myHunter.adHoc(10, 10));            
     } 
 }
