@@ -31,7 +31,15 @@ public class FarTest
   }
 }
 ```
-Скриншот запуска программы в Far  
+- ***Расположение файлов***  
 
-![Far](https://github.com/Fisher48/Course-Java-1.2/assets/156232888/59559d37-8b7d-4b08-ac2a-2f1a251e7dd9)
+![Расположение файлов](https://github.com/Fisher48/Course-Java-1.2/assets/156232888/5a8d33ca-9a35-4bdd-8047-410a74b58492)  
+  
+- ***Просмотр кода в программе Far***
+  
+![Просмотр кода в программе Far](https://github.com/Fisher48/Course-Java-1.2/assets/156232888/1ae079f7-24f1-49cc-aeb9-dd3472936caa)
+  
+- ***Скриншот запуска программы в Far***  
+  
+![Скриншот запуска программы в Far](https://github.com/Fisher48/Course-Java-1.2/assets/156232888/59559d37-8b7d-4b08-ac2a-2f1a251e7dd9)
 
