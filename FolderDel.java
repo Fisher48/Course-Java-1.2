@@ -4,21 +4,25 @@ import java.io.IOException;
 /* Напишите функцию, которая удаляет заданный каталог (возможно, непустой) и все файлы внутри него.
 Если внутри каталога есть подкаталоги, ничего удалять не надо. Функция возвращает флажок успешно/неудача.*/
 public class FolderDel {
-    public static boolean del(File dir) throws IOException {
-        File[] files = dir.listFiles();
-        for(int depth = 0; depth < files.length; depth++) {
-            for (File dirs : files) {
-                if (dirs.isDirectory()) {
-                    return false;
+    public static boolean del(File dir) {
+        try {
+            File[] files = dir.listFiles();
+            for (int depth = 0; depth < files.length; depth++) {
+                for (File dirs : files) {
+                    if (dirs.isDirectory()) {
+                        return false;
+                    }
+                }
+                // Если нет подкаталогов удалить все содержимое
+                for (File file : files) {
+                    file.delete();
                 }
             }
-            // Если нет подкаталогов удалить все содержимое и саму папку
-            for (File file : files) {
-                file.delete();
-                dir.delete();
-            }
+            // И удалить саму папку
+            dir.delete();
+        } catch (NullPointerException e) {
+            System.err.println("Ошибка папка не существует");
         }
-        dir.delete();
         return true;
     }
     public static void main (String[]args) throws IOException {
