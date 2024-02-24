@@ -31,7 +31,6 @@ public class TenFiles {
                 sum += Integer.parseInt(st2);
                 st2 = br.readLine();
             }
-            br.close();
             System.out.println("Файл номер - " + path2);
             return sum;
         } catch (IOException e) {
