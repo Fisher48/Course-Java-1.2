@@ -14,9 +14,6 @@ public class FolderDel {
             }
             // Если нет подкаталогов удалить все содержимое и саму папку
             for (File file : files) {
-                if (file.isDirectory()) {
-                    return false;
-                }
                 file.delete();
                 dir.delete();
             }
