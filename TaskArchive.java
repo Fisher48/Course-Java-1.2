@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.zip.*;
 
-public class TaskSixteen {
+public class TaskArchive {
     public static void arch(String name, ArrayList<String> Files) throws IOException {
 
         // Открываем поток - FileOutputStream, создавая объект fileOutputStream
@@ -50,7 +50,7 @@ public class TaskSixteen {
     }
 
     public static void main(String[] args) throws IOException {
-        String file1 = "Tests.txt";
+        String file1 = "Test.txt";
         String file2 = "Persons.txt";
         String archive = "Out.zip";
         ArrayList<String> Files = new ArrayList<>();
