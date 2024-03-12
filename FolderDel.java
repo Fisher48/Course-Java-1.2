@@ -1,8 +1,6 @@
 import java.io.File;
 import java.io.IOException;
 
-/* Напишите функцию, которая удаляет заданный каталог (возможно, непустой) и все файлы внутри него.
-Если внутри каталога есть подкаталоги, ничего удалять не надо. Функция возвращает флажок успешно/неудача.*/
 public class FolderDel {
     public static boolean del(File dir) {
         try {
