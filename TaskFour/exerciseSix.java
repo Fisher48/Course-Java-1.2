@@ -52,7 +52,7 @@ class Person {
 }
     class Hunter extends Person {
         private int endurance;
-        Hands Glooves; // объявлен объект Перчатки класса Hands у класса Hunter
+        protected Hands Glooves; // объявлен объект Перчатки класса Hands у класса Hunter
 
       Hunter (int h, int a, int s, double d, int e, String n, String w) {
         super(h, a, s, d, n, w);
@@ -83,7 +83,7 @@ class Person {
 
     class Warrior extends Person {
         private int fury;
-        Head Helmet;
+        protected Head Helmet;
 
       Warrior (int h, int a, int s, double d, int f, String n, String w) {
         super(h, a, s, d, n, w);
@@ -113,7 +113,7 @@ class Person {
 
     class Dwarf extends Person {
         private int mana;
-        Foot Boots;
+        protected Foot Boots;
 
       Dwarf (int h, int a, int s, double d, int m, String n, String w) {
         super(h, a, s, d, n, w);
