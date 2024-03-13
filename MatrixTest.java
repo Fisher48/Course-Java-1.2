@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import static java.util.Arrays.sort;
@@ -37,10 +38,9 @@ class MatrixTest {
         assertArrayEquals(a, Matrix.sort(b));
     }
 
-    @Test
+    @RepeatedTest(1000)
     public void RepetitiveTest() {
         Random rand = new Random();
-        for (int j = 0; j < 1000; j++) {
             int n = 5;
             int[] a = new int[n];
             int[] b = new int[n];
@@ -50,6 +50,5 @@ class MatrixTest {
             }
             sort(a);
             assertArrayEquals(a, Matrix.sort(b));
-        }
     }
 }
