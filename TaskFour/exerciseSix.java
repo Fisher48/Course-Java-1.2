@@ -282,7 +282,7 @@ class Person {
 
         myDwarf.equip(0); // одеть или снять предмет
         myHunter.equip(0);
-        myWarrior.equip(0);
+        myWarrior.equip(1);
 
         myDwarf.getInfo(); // вывод на экран хар-ки персонажа
         myHunter.getInfo();
