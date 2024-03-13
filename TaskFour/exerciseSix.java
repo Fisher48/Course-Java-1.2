@@ -62,16 +62,23 @@ class Person {
         this.Glooves = null;
       }
 
-      protected void equip(Hands BigHands, Head Heller) {
+      protected void equip(Hands BigHands) {
+          if (BigHands != null) {
+              HP += BigHands.HPi; // если не пусто, то идет прирост ХП для персонажа
+          } else if (Glooves != null) {
+              HP -= Glooves.HPi; // если снимаем, то минус ХП от предмета
+          }
           Glooves = BigHands;
-          Helmet = Heller;
-          if (Glooves != null) {
-              HP += Glooves.HPi; // если не пусто, то идет прирост ХП для персонажа
-          }
-          if (Helmet != null) {
-              HP += Helmet.HPi;
-          }
       }
+        protected void equip(Head Heller) {
+            if (Heller != null) {
+                HP += Heller.HPi;
+            } else if (Helmet != null) {
+                HP -= Helmet.HPi;
+            }
+            Helmet = Heller;
+        }
+
         // измененный родительский метод
         protected void attack() {
           this.loss();
@@ -98,16 +105,22 @@ class Person {
         this.Boots = null;
       }
 
-        protected void equip(Head Heller, Foot BootsOfSpeed) {
+        protected void equip(Head Heller) {
+          if (Heller != null) {
+              HP += Heller.HPi;
+          } else if (Helmet != null) {
+              HP -= Helmet.HPi;
+          }
           Helmet = Heller;
-          Boots = BootsOfSpeed;
-          if (Helmet != null) {
-              HP += Helmet.HPi;
-          }
-          if (Boots != null) {
-              HP += Boots.HPi;
-          }
-      }
+        }
+        protected void equip(Foot BootsOfSpeed) {
+            if (BootsOfSpeed != null) {
+                HP += BootsOfSpeed.HPi;
+            } else if (Boots != null) {
+                HP -= Boots.HPi;
+            }
+            Boots = BootsOfSpeed;
+        }
           protected void attack() {
             this.loss();
             this.fury -= 100;
@@ -118,25 +131,38 @@ class Person {
                 return fury;
               }
                 return this.fury += new_fury;
-          } 
+          }
     }
 
     class Dwarf extends Person {
         private int mana;
         private Foot Boots;
 
+        private Head Helmet;
+
       Dwarf (int h, int a, int s, double d, int m, String n, String w) {
         super(h, a, s, d, n, w);
         this.mana = m;
         this.Boots = null;
+        this.Helmet = null;
       }
 
       protected void equip(Foot BootsOfSpeed) {
-          Boots = BootsOfSpeed;
-          if (Boots != null) {
-              HP += Boots.HPi;
+          if (BootsOfSpeed != null) {
+              HP += BootsOfSpeed.HPi;
+          } else if (Boots != null) {
+              HP -= Boots.HPi;
           }
+          Boots = BootsOfSpeed;
       }
+        protected void equip(Head Heller) {
+            if (Heller != null) {
+                HP += Heller.HPi;
+            } else if (Helmet != null) {
+                HP -= Helmet.HPi;
+            }
+            Helmet = Heller;
+        }
         protected void attack() {
           this.loss();
           this.mana -= 100;
@@ -282,11 +308,16 @@ class Person {
         Head Heller = new Head("Хеллер", 125, 100, 50);
         Foot BootsOfSpeed = new Foot("Боты скорости", 150, 150, 40);
 
-        myDwarf.equip(BootsOfSpeed); // одеть предмет
-        myHunter.equip(BigHands, Heller);
-        myWarrior.equip(Heller, BootsOfSpeed);
+        myDwarf.equip(BootsOfSpeed);// одеть предмет
+        myDwarf.equip(Heller);
 
-        myHunter.equip(null,null); // убрать предмет
+        myHunter.equip(BigHands);
+        myHunter.equip(Heller);
+
+        myWarrior.equip(Heller);
+        myWarrior.equip(BootsOfSpeed);
+
+        myWarrior.equip((Head) null); // снять предмет головы
 
         myDwarf.getInfo(); // вывод на экран хар-ки персонажа
         myHunter.getInfo();
