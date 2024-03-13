@@ -53,19 +53,23 @@ class Person {
     class Hunter extends Person {
         private int endurance;
         private Hands Glooves; // объявлен объект Перчатки класса Hands у класса Hunter
+        private Head Helmet;
 
       Hunter (int h, int a, int s, double d, int e, String n, String w) {
         super(h, a, s, d, n, w);
         this.endurance = e;
+        this.Helmet = null;
+        this.Glooves = null;
       }
 
-      protected void equip(Hands BigHands) {
+      protected void equip(Hands BigHands, Head Heller) {
           Glooves = BigHands;
+          Helmet = Heller;
           if (Glooves != null) {
-          HP += Glooves.HPi; // если не пусто, то идет прирост ХП для персонажа
+              HP += Glooves.HPi; // если не пусто, то идет прирост ХП для персонажа
           }
-          else {
-          HP += 0;
+          if (Helmet != null) {
+              HP += Helmet.HPi;
           }
       }
         // измененный родительский метод
@@ -76,28 +80,32 @@ class Person {
         // восстановит выносливость
         protected int refill(int new_endurance) {
             if (new_endurance > endurance) {
-              return endurance;
+                return endurance;
             }
-              return this.endurance += new_endurance;
+            return this.endurance += new_endurance;
         }
     }
 
     class Warrior extends Person {
         private int fury;
         private Head Helmet;
+        private Foot Boots;
 
       Warrior (int h, int a, int s, double d, int f, String n, String w) {
         super(h, a, s, d, n, w);
         this.fury = f;
+        this.Helmet = null;
+        this.Boots = null;
       }
 
-        protected void equip(Head Heller) {
+        protected void equip(Head Heller, Foot BootsOfSpeed) {
           Helmet = Heller;
+          Boots = BootsOfSpeed;
           if (Helmet != null) {
-          HP += Helmet.HPi;
+              HP += Helmet.HPi;
           }
-          else {
-          HP += 0;
+          if (Boots != null) {
+              HP += Boots.HPi;
           }
       }
           protected void attack() {
@@ -120,15 +128,13 @@ class Person {
       Dwarf (int h, int a, int s, double d, int m, String n, String w) {
         super(h, a, s, d, n, w);
         this.mana = m;
+        this.Boots = null;
       }
 
       protected void equip(Foot BootsOfSpeed) {
           Boots = BootsOfSpeed;
           if (Boots != null) {
-          HP += Boots.HPi;
-          }
-          else {
-          HP += 0;
+              HP += Boots.HPi;
           }
       }
         protected void attack() {
@@ -139,9 +145,9 @@ class Person {
         // эликсир восстановит ману
         protected int refill(int new_mana) {
             if (new_mana > mana) {
-              return mana;
+                return mana;
             }
-              return this.mana += new_mana;
+            return this.mana += new_mana;
         }
     }
 
@@ -150,8 +156,8 @@ class Person {
         protected int armor; // Кол-во брони баллы
 
         Items (String n, int a) {
-        this.name = n;
-        this.armor = a;
+            this.name = n;
+            this.armor = a;
         }
 
         protected void getInfo() {
@@ -276,9 +282,11 @@ class Person {
         Head Heller = new Head("Хеллер", 125, 100, 50);
         Foot BootsOfSpeed = new Foot("Боты скорости", 150, 150, 40);
 
-        myDwarf.equip(BootsOfSpeed); // одеть или снять предмет
-        myHunter.equip(BigHands);
-        myWarrior.equip(Heller);
+        myDwarf.equip(BootsOfSpeed); // одеть предмет
+        myHunter.equip(BigHands, Heller);
+        myWarrior.equip(Heller, BootsOfSpeed);
+
+        myHunter.equip(null,null); // убрать предмет
 
         myDwarf.getInfo(); // вывод на экран хар-ки персонажа
         myHunter.getInfo();
