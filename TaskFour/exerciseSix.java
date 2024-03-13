@@ -52,20 +52,21 @@ class Person {
 }
     class Hunter extends Person {
         private int endurance;
-        protected Hands Glooves; // объявлен объект Перчатки класса Hands у класса Hunter
+        private Hands Glooves; // объявлен объект Перчатки класса Hands у класса Hunter
 
       Hunter (int h, int a, int s, double d, int e, String n, String w) {
         super(h, a, s, d, n, w);
         this.endurance = e;
       }
 
-      protected void equip(int knd) {
-        if (knd == 1) {
-          HP += Glooves.HPi; // если knd = 1, то идет прирост ХП для персонажа
-        }
-        else if (knd == 0) {
+      protected void equip(Hands BigHands) {
+          Glooves = BigHands;
+          if (Glooves != null) {
+          HP += Glooves.HPi; // если не пусто, то идет прирост ХП для персонажа
+          }
+          else {
           HP += 0;
-        }
+          }
       }
         // измененный родительский метод
         protected void attack() {
@@ -83,20 +84,21 @@ class Person {
 
     class Warrior extends Person {
         private int fury;
-        protected Head Helmet;
+        private Head Helmet;
 
       Warrior (int h, int a, int s, double d, int f, String n, String w) {
         super(h, a, s, d, n, w);
         this.fury = f;
       }
 
-      protected void equip(int knd) {
-        if (knd == 1) {
+        protected void equip(Head Heller) {
+          Helmet = Heller;
+          if (Helmet != null) {
           HP += Helmet.HPi;
-        }
-        else if (knd == 0) {
+          }
+          else {
           HP += 0;
-        }
+          }
       }
           protected void attack() {
             this.loss();
@@ -113,20 +115,21 @@ class Person {
 
     class Dwarf extends Person {
         private int mana;
-        protected Foot Boots;
+        private Foot Boots;
 
       Dwarf (int h, int a, int s, double d, int m, String n, String w) {
         super(h, a, s, d, n, w);
         this.mana = m;
       }
 
-      protected void equip(int knd) {
-        if (knd == 1) {
+      protected void equip(Foot BootsOfSpeed) {
+          Boots = BootsOfSpeed;
+          if (Boots != null) {
           HP += Boots.HPi;
-        }
-        else if (knd == 0) {
+          }
+          else {
           HP += 0;
-        }
+          }
       }
         protected void attack() {
           this.loss();
@@ -145,12 +148,10 @@ class Person {
     class Items {
         protected String name; // Название
         protected int armor; // Кол-во брони баллы
-        protected int kind; // 1 - одето, 0 - снято
 
-        Items (String n, int a, int k) {
+        Items (String n, int a) {
         this.name = n;
         this.armor = a;
-        this.kind = k;
         }
 
         protected void getInfo() {
@@ -167,8 +168,8 @@ class Person {
         class Head extends Items {
             protected int HPi;
             protected int mag_Armor;
-            Head (String n, int a, int k, int hi, int mA) {
-                super(n, a, k);
+            Head (String n, int a, int hi, int mA) {
+                super(n, a);
                 this.HPi = hi;
                 this.mag_Armor = mA;
             }
@@ -190,8 +191,8 @@ class Person {
         class Hands extends Items {
             protected int HPi;
             protected int mag_Armor;
-            Hands (String n, int a, int k, int hi, int mA) {
-                super(n, a, k);
+            Hands (String n, int a, int hi, int mA) {
+                super(n, a);
                 this.HPi = hi;
                 this.mag_Armor = mA;
             }
@@ -212,8 +213,8 @@ class Person {
         class Body extends Items {
             protected int HPi;
             protected int mag_Armor;
-            Body (String n, int a, int k, int hi, int mA) {
-                super(n, a, k);
+            Body (String n, int a, int hi, int mA) {
+                super(n, a);
                 this.HPi = hi;
                 this.mag_Armor = mA;
             }
@@ -234,8 +235,8 @@ class Person {
         class Foot extends Items {
             protected int HPi;
             protected int mag_Armor;
-            Foot (String n, int a, int k, int hi, int mA) {
-                super(n, a, k);
+            Foot (String n, int a, int hi, int mA) {
+                super(n, a);
                 this.HPi = hi;
                 this.mag_Armor = mA;
             }
@@ -271,28 +272,23 @@ class Person {
         myWarrior.refill(350); // восполнение ярости
 
         // Предметы для композиции с персонажем
-        Hands BigHands = new Hands("Большие руки", 100, 1, 100, 25);
-        Head Heller = new Head("Хеллер", 125, 1, 100, 50);
-        Foot BootsofSpeed = new Foot("Боты скорости", 150, 1, 150, 40);
+        Hands BigHands = new Hands("Большие руки", 100, 100, 25);
+        Head Heller = new Head("Хеллер", 125, 100, 50);
+        Foot BootsOfSpeed = new Foot("Боты скорости", 150, 150, 40);
 
-        // Передаем объект BigHands в поле Glooves класса Hunter
-        myHunter.Glooves = BigHands;
-        myDwarf.Boots = BootsofSpeed;
-        myWarrior.Helmet = Heller;
-
-        myDwarf.equip(0); // одеть или снять предмет
-        myHunter.equip(0);
-        myWarrior.equip(1);
+        myDwarf.equip(BootsOfSpeed); // одеть или снять предмет
+        myHunter.equip(BigHands);
+        myWarrior.equip(Heller);
 
         myDwarf.getInfo(); // вывод на экран хар-ки персонажа
         myHunter.getInfo();
         myWarrior.getInfo();
 
         // Объекты для массива
-        Hands g1 = new Hands("Наручи", 1, 1, 10, 1);
-        Head h1 = new Head("Шляпа", 1, 1, 10, 1);
-        Foot f1 = new Foot("Ботинки", 0, 1, 10, 1);
-        Body b1 = new Body("Тело", 0, 1, 10, 1);
+        Hands g1 = new Hands("Наручи", 1, 10, 1);
+        Head h1 = new Head("Шляпа", 1, 10, 1);
+        Foot f1 = new Foot("Ботинки", 0, 10, 1);
+        Body b1 = new Body("Тело", 0, 10, 1);
 
         // массив из 500 объектов, где случайно перемешаны 500 объектов четырех дочерних классов
         Items [] its = new Items [500];
