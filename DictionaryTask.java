@@ -17,6 +17,7 @@ public class DictionaryTask {
                 repeat.put(i,repeat.get(i)+1);
             }
         }
+        assert (!repeat.isEmpty()) : "Словарь не заполнен";
 
         // Собираем список из значений, которые повторяются не менее X раз
         for (Integer i : repeat.keySet()) {
