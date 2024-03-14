@@ -37,6 +37,7 @@ public class DictionaryTask {
         while(Dictionary.size() < N) {
             Dictionary.put(rand.nextInt(200)+1, "String" + rand.nextInt(200)+1);
         }
+        assert (Dictionary.size() > N) : "Словарь больше заданного значения";
 
         // Считываем по ключам все значения и выводим на экран
         for (Integer i : Dictionary.keySet()) {
@@ -45,6 +46,7 @@ public class DictionaryTask {
 
         // Удалить все пары
         Dictionary.clear();
+        assert (Dictionary == null) : "Словать не очищен";
 
         if(Dictionary.isEmpty()) {
             System.out.println("Словарь пуст");
@@ -55,6 +57,7 @@ public class DictionaryTask {
         int X = 10; // Кол-во повторений
         for (int i = 0; i < 100; i++) {
             Numbers.add(rand.nextInt(10)+1);
+            assert (i > 0) : "Отрицательный счетчик";
         }
         System.out.println(repeatEval(Numbers,X));
     }
