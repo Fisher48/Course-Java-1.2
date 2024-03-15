@@ -6,12 +6,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TenFiles {
 
-    public static class NotCorrectQuantityofStringException extends Exception {
-        public NotCorrectQuantityofStringException (String message) {
-            super(message);
-        }
-    }
-
     public static int[] filesSum(ArrayList list) {
         Random rand = new Random();
         int[] res = new int[2];
@@ -48,7 +42,9 @@ public class TenFiles {
                 count++;
             }
             if (count != 3) {
-                throw new NotCorrectQuantityofStringException ("Неверное кол-во строк");
+                res[1] = 2;
+                log.warning ("Неверное кол-во строк");
+                return res;
             }
             log.info("Файл номер - " + file.getName());
         } catch (IOException e) {
@@ -56,9 +52,6 @@ public class TenFiles {
         } catch (NumberFormatException e) {
             res[1] = 1;
             log.warning("Файл не парсится");
-        } catch (NotCorrectQuantityofStringException exception) {
-            res[1] = 2;
-            log.warning("Неверное кол-во строк");
         } finally {
             if (br != null) {
                 try {
@@ -77,12 +70,14 @@ public class TenFiles {
             BufferedWriter bw;
             ArrayList<File> list = new ArrayList<>();
             try {
-                int n = 222;
+                int n = 22;
                 Random rand = new Random();
                 for (int i = 1; i <= n; i++) {
                     File my_fil = new File(i + ".txt");
                     bw = new BufferedWriter(new FileWriter(my_fil));
 
+                    bw.write(String.valueOf(rand.nextInt(100) + 1));
+                    bw.newLine();
                     bw.write(String.valueOf(rand.nextInt(100) + 1));
                     bw.newLine();
                     bw.write(String.valueOf(rand.nextInt(100) + 1));
