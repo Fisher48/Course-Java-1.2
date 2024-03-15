@@ -70,14 +70,12 @@ public class TenFiles {
             BufferedWriter bw;
             ArrayList<File> list = new ArrayList<>();
             try {
-                int n = 22;
+                int n = 222;
                 Random rand = new Random();
                 for (int i = 1; i <= n; i++) {
                     File my_fil = new File(i + ".txt");
                     bw = new BufferedWriter(new FileWriter(my_fil));
 
-                    bw.write(String.valueOf(rand.nextInt(100) + 1));
-                    bw.newLine();
                     bw.write(String.valueOf(rand.nextInt(100) + 1));
                     bw.newLine();
                     bw.write(String.valueOf(rand.nextInt(100) + 1));
