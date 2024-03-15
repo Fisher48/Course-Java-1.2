@@ -1,36 +1,51 @@
 import java.io.*;
-import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.logging.Logger;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TenFiles {
-    public static int func(ArrayList list) {
+    public static int[] filesSum(ArrayList list) {
         Random rand = new Random();
+        int[] res = new int[2];
+        res[0] = 0;
+        res[1] = 0;
+        for (int i = 0; i < 2; i++) {
+            int x = rand.nextInt(list.size());
+            int[] r;
+            r = func((File) list.get(x));
+            if (r[1] != 0) {
+                res[1] = r[1];
+                return res;
+            }
+            res[0] += r[0];
+        }
+        return res;
+    }
+
+    public static int[] func(File file) {
         Logger log = Logger.getLogger(TenFiles.class.getName());
         BufferedReader br = null;
+        int[] res = new int[2];
+        res[1] = 0;
         int sum = 0;
-        int x = 2;
         try {
-            for (int i = 0;  i < x; i++) {
-                int r = rand.nextInt(list.size())+1;
-                File my_file = new File(r + ".txt");
+                File my_file = new File(String.valueOf(file));
                 br = new BufferedReader(new FileReader(my_file));
                 String st = br.readLine();
                 assertNotNull(st, "Файл пустой");
                 while (st != null) {
-                    System.out.println(st);
+                    log.info(st);
                     sum += Integer.parseInt(st);
                     st = br.readLine();
                 }
-                br.close();
-                System.out.println("Файл номер - " + r);
-            }
-            return sum;
+                log.info("Файл номер - " + file.getName());
         } catch (IOException e) {
-            System.err.println("Error");
+            log.warning("Error");
+        } catch (Exception e) {
+            res[1] = 1;
         } finally {
             if (br != null) {
                 try {
@@ -40,12 +55,13 @@ public class TenFiles {
                 }
             }
         }
-        return sum;
+        res[0] = sum;
+        return res;
     }
         public static void main (String[]args) {
             Logger log = Logger.getLogger(TenFiles.class.getName());
             BufferedWriter bw;
-            ArrayList<Path> list = new ArrayList<>();
+            ArrayList<File> list = new ArrayList<>();
             try {
                 int n = 222;
                 Random rand = new Random();
@@ -58,10 +74,10 @@ public class TenFiles {
                     bw.write(String.valueOf(rand.nextInt(100) + 1));
                     bw.newLine();
                     bw.write(String.valueOf(rand.nextInt(100) + 1));
-                    list.add(my_fil.toPath());
+                    list.add(my_fil);
                     bw.close();
                 }
-                System.out.println("Сумма из 2-х файлов = " + func(list));
+                System.out.println("Сумма из 2-х файлов = " + Arrays.toString(filesSum(list)));
             } catch (Exception e) {
                 log.warning("Ошибка записи файла");
             }
