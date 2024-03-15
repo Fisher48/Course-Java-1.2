@@ -1,4 +1,5 @@
 import java.io.*;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Logger;
@@ -14,7 +15,7 @@ public class TenFiles {
         int x = 2;
         try {
             for (int i = 0;  i < x; i++) {
-                int r = rand.nextInt(list.size());
+                int r = rand.nextInt(list.size())+1;
                 File my_file = new File(r + ".txt");
                 br = new BufferedReader(new FileReader(my_file));
                 String st = br.readLine();
@@ -44,7 +45,7 @@ public class TenFiles {
         public static void main (String[]args) {
             Logger log = Logger.getLogger(TenFiles.class.getName());
             BufferedWriter bw;
-            ArrayList<File> list = new ArrayList<>();
+            ArrayList<Path> list = new ArrayList<>();
             try {
                 int n = 222;
                 Random rand = new Random();
@@ -57,7 +58,7 @@ public class TenFiles {
                     bw.write(String.valueOf(rand.nextInt(100) + 1));
                     bw.newLine();
                     bw.write(String.valueOf(rand.nextInt(100) + 1));
-                    list.add(my_fil);
+                    list.add(my_fil.toPath());
                     bw.close();
                 }
                 System.out.println("Сумма из 2-х файлов = " + func(list));
