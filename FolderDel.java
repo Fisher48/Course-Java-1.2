@@ -1,8 +1,10 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 public class FolderDel {
     public static boolean del(File dir) {
+        Logger log = Logger.getLogger(FolderDel.class.getName());
         try {
             File[] files = dir.listFiles();
             for (int depth = 0; depth < files.length; depth++) {
@@ -19,16 +21,17 @@ public class FolderDel {
             // И удалить саму папку
             dir.delete();
         } catch (NullPointerException e) {
-            System.err.println("Ошибка папка не существует");
+            log.warning("Ошибка папка не существует");
         }
         return true;
     }
     public static void main (String[]args) throws IOException {
-        File dir = new File("D:\\Test");
+        Logger log = Logger.getLogger(FolderDel.class.getName());
+        File dir = new File("D:\\test");
         if(del(dir)){
-            System.out.println("Успешно");
+            log.info("Успешно");
         }
         else
-            System.out.println("Неудача");
+            log.info("Неудача");
     }
 }
