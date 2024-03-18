@@ -22,12 +22,13 @@ public class FolderDel {
             dir.delete();
         } catch (NullPointerException e) {
             log.warning("Ошибка папка не существует");
+            return false;
         }
         return true;
     }
     public static void main (String[]args) throws IOException {
         Logger log = Logger.getLogger(FolderDel.class.getName());
-        File dir = new File("D:\\test");
+        File dir = new File("D:\\Test");
         if(del(dir)){
             log.info("Успешно");
         }
