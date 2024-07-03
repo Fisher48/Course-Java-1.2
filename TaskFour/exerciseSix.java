@@ -3,7 +3,7 @@ import java.util.Random;
 class Person {
     protected int HP;
     protected int agility;
-    protected int strenght;
+    protected int strength;
     protected double damage;
     protected String name;
     protected String weapon;
@@ -11,7 +11,7 @@ class Person {
     Person (int h, int a, int s, double d, String n, String w) {
         this.HP = h;
         this.agility = a;
-        this.strenght = s;
+        this.strength = s;
         this.damage = d;
         this.name = n;
         this.weapon = w;
@@ -37,7 +37,7 @@ class Person {
         System.out.println("Оружие: " + this.weapon);
         System.out.println("Здоровье: " + this.HP);
         System.out.println("Ловкость: " + this.agility);
-        System.out.println("Сила: " + this.strenght);
+        System.out.println("Сила: " + this.strength);
         System.out.println("Урон: " + this.damage);
         System.out.println();
       }
@@ -178,7 +178,7 @@ class Person {
     }
 
     class Items {
-        protected String name; // Название
+        protected String name;
         protected int armor; // Кол-во брони баллы
 
         Items (String n, int a) {
